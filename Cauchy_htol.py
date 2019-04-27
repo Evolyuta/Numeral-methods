@@ -32,7 +32,7 @@ normaArray = []
 halfnormaArray = []
 # opnormaArray = []
 
-for k in range(2, 10):
+for k in range(9, 10):
 
     x0 = 0
     xlast = 5
@@ -69,7 +69,7 @@ for k in range(2, 10):
     norma = np.sqrt((y1(xlast) - y11) ** 2 + (y2(xlast) - y21) ** 2 + (y3(xlast) - y31) ** 2 + (y4(xlast) - y41) ** 2)
     normaArray.append(norma)
 
-    """x0 = 0
+    x0 = 0
     h = h / 2
 
     while x0 <= xlast:
@@ -96,7 +96,7 @@ for k in range(2, 10):
         halfy41 = y4(x0) + h * (1.43 * f40 + 0.43 * f4(x0 + 0.35 * h, y1(x0) + 0.35 * h * f40, y2(x0) + 0.35 * h * f40,
                                                        y3(x0) + 0.35 * h * f40, y4(x0) + 0.35 * h * f40))
 
-        x0 = x0 + h"""
+        x0 = x0 + h
 
     # halfnorma = np.sqrt((y1(xlast) - y11) ** 2 + (y2(xlast) - y21) ** 2 + (y3(xlast) - y31) ** 2 + (y4(xlast) - y41) ** 2)
     # halfnormaArray.append(halfnorma)
@@ -117,25 +117,25 @@ ords = normaArray
 
 # ords1 = opnormaArray
 
-tarray = []
-tfirst = normaArray[0]
-while tfirst >= normaArray[-1]:
-    tarray.append(tfirst)
-    tfirst = tfirst / 2
-tarray.append(normaArray[-1])
+# tarray = []
+# tfirst = normaArray[0]
+# while tfirst >= normaArray[-1]:
+#     tarray.append(tfirst)
+#     tfirst = tfirst / 2
+# tarray.append(normaArray[-1])
+#
+# plt.plot(args, ords, args, tarray, linewidth=2)
+# plt.ylabel('Norma')
+#
+# for i_x, i_y in zip(args, ords):
+#     # if i_x % 1 == 0:
+#     plt.text(i_x, i_y, '({}, {})'.format('%.3f' % i_x, '%.2f' % i_y, ))
+#
+# mng = plt.get_current_fig_manager()
+# mng.resize(*mng.window.maxsize())
+#
+# plt.show()
 
-plt.plot(args, ords, args, tarray, linewidth=2)
-plt.ylabel('Norma')
-
-for i_x, i_y in zip(args, ords):
-    # if i_x % 1 == 0:
-    plt.text(i_x, i_y, '({}, {})'.format('%.3f' % i_x, '%.2f' % i_y, ))
-
-mng = plt.get_current_fig_manager()
-mng.resize(*mng.window.maxsize())
-
-plt.show()
-"""
 halfnorma = np.sqrt((halfy11 - y11) ** 2 + (halfy21 - y21) ** 2 + (halfy31 - y31) ** 2 + (halfy41 - y41) ** 2)
 
 R2n = (halfnorma / (2 ** p - 1))
@@ -177,7 +177,7 @@ while x0 <= xlast:
 
     norma = np.sqrt((y1(x0) - y11) ** 2 + (y2(x0) - y21) ** 2 + (y3(x0) - y31) ** 2 + (y4(x0) - y41) ** 2)
     normaArray.append(norma)
-    print(x0, y1(x0), y11, norma)
+    print('x0 = %.3f' %x0, ' norma = %.10f' %norma)
     xArray.append(x0)
     x0 = x0 + h
 
@@ -194,4 +194,4 @@ plt.ylabel('Norma')
 mng = plt.get_current_fig_manager()
 mng.resize(*mng.window.maxsize())
 
-plt.show()"""
+plt.show()
