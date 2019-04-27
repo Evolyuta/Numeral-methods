@@ -4,7 +4,9 @@
 # C = 3
 # opponent - 26
 import math
-import matplotlib.pyplot as plt; plt.rcdefaults()
+import matplotlib.pyplot as plt;
+
+plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -24,14 +26,17 @@ f3 = lambda x, y1, y2, y3, y4: 2 * C * x * y4
 f4 = lambda x, y1, y2, y3, y4: -2 * x * np.log(y1)
 
 hArray = []
+kArray = []
 normaArray = []
+# opnormaArray = []
 
-for k in range(5,11):
+for k in range(3, 14):
 
     x0 = 0
     xlast = 5
     h = 1 / np.power(2, k)
     hArray.append(h)
+    kArray.append(k)
 
     while x0 <= xlast:
         f10 = f1(x0, y1(x0), y2(x0), y3(x0), y4(x0))
@@ -39,14 +44,14 @@ for k in range(5,11):
         f30 = f3(x0, y1(x0), y2(x0), y3(x0), y4(x0))
         f40 = f4(x0, y1(x0), y2(x0), y3(x0), y4(x0))
 
-        # y11 = y1(x0) + h * f1(x0 + h / 2, y1(x0) + h / 2 * f10, y2(x0) + h / 2 * f10, y3(x0) + h / 2 * f10,
-        #                       y4(x0) + h / 2 * f10)
-        # y21 = y2(x0) + h * f2(x0 + h / 2, y1(x0) + h / 2 * f20, y2(x0) + h / 2 * f20, y3(x0) + h / 2 * f20,
-        #                       y4(x0) + h / 2 * f20)
-        # y31 = y3(x0) + h * f3(x0 + h / 2, y1(x0) + h / 2 * f30, y2(x0) + h / 2 * f30, y3(x0) + h / 2 * f30,
-        #                       y4(x0) + h / 2 * f30)
-        # y41 = y4(x0) + h * f4(x0 + h / 2, y1(x0) + h / 2 * f40, y2(x0) + h / 2 * f40, y3(x0) + h / 2 * f40,
-        #                       y4(x0) + h / 2 * f40)
+        # opy11 = y1(x0) + h * f1(x0 + h / 2, y1(x0) + h / 2 * f10, y2(x0) + h / 2 * f10, y3(x0) + h / 2 * f10,
+        #                         y4(x0) + h / 2 * f10)
+        # opy21 = y2(x0) + h * f2(x0 + h / 2, y1(x0) + h / 2 * f20, y2(x0) + h / 2 * f20, y3(x0) + h / 2 * f20,
+        #                         y4(x0) + h / 2 * f20)
+        # opy31 = y3(x0) + h * f3(x0 + h / 2, y1(x0) + h / 2 * f30, y2(x0) + h / 2 * f30, y3(x0) + h / 2 * f30,
+        #                         y4(x0) + h / 2 * f30)
+        # opy41 = y4(x0) + h * f4(x0 + h / 2, y1(x0) + h / 2 * f40, y2(x0) + h / 2 * f40, y3(x0) + h / 2 * f40,
+        #                         y4(x0) + h / 2 * f40)
 
         y11 = y1(x0) + h * (1.43 * f10 + 0.43 * f1(x0 + 0.35 * h, y1(x0) + 0.35 * h * f10, y2(x0) + 0.35 * h * f10,
                                                    y3(x0) + 0.35 * h * f10, y4(x0) + 0.35 * h * f10))
@@ -61,26 +66,34 @@ for k in range(5,11):
 
     norma = np.sqrt((y1(xlast) - y11) ** 2 + (y2(xlast) - y21) ** 2 + (y3(xlast) - y31) ** 2 + (y4(xlast) - y41) ** 2)
     normaArray.append(norma)
-    # print(xlast, y11, y21, y31, y41)
-    # print(xlast, y1(xlast), y2(xlast), y3(xlast), y4(xlast))
+    # opnorma = np.sqrt(
+    #     (y1(xlast) - opy11) ** 2 + (y2(xlast) - opy21) ** 2 + (y3(xlast) - opy31) ** 2 + (y4(xlast) - opy41) ** 2)
+    # opnormaArray.append(opnorma)
     print(k)
 
 print(hArray)
 print(normaArray)
+# print(opnormaArray)
 
-
-t = np.linspace(hArray[5],hArray[0])
-a = 200*t
 
 args = hArray
 ords = normaArray
 
-plt.plot(args, ords, t, a, linewidth=2)
+# ords1 = opnormaArray
+
+tarray = []
+tfirst = normaArray[0]
+while tfirst >= normaArray[-1]:
+    tarray.append(tfirst)
+    tfirst = tfirst / 2
+tarray.append(normaArray[-1])
+
+plt.plot(args, ords, args, tarray, linewidth=2)
 plt.ylabel('Norma')
 
 for i_x, i_y in zip(args, ords):
     # if i_x % 1 == 0:
-        plt.text(i_x, i_y, '({}, {})'.format(i_x, '%.2f' % i_y))
+    plt.text(i_x, i_y, '({}, {})'.format('%.3f' % i_x, '%.2f' % i_y, ))
 
 mng = plt.get_current_fig_manager()
 mng.resize(*mng.window.maxsize())
