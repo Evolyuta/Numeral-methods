@@ -27,7 +27,7 @@ f2 = lambda x, y1, y2, y3, y4: 2 * B * x * np.exp(B * (y3 - A) / C) * y4
 f3 = lambda x, y1, y2, y3, y4: 2 * C * x * y4
 f4 = lambda x, y1, y2, y3, y4: -2 * x * np.log(y1)
 
-htol= 1.9373350415596262e-06
+htol = 1.9373350415596262e-06
 x0 = 0
 y10 = y1(0)
 y20 = y2(0)
@@ -69,7 +69,6 @@ while x0 < xn:
     xArray.append(x0)
     normaArray.append(norma)
     print(x0)
-
 
     y10 = y11
     y20 = y21
