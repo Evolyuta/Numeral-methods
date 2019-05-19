@@ -83,6 +83,9 @@ print(norma)
 args = xArray
 ords = normaArray
 
+np.save('xArray.npy', xArray)
+np.save('normaArray.npy', normaArray)
+
 plt.plot(args, ords, linewidth=2)
 plt.ylabel('Norma')
 

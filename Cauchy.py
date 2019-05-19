@@ -32,7 +32,7 @@ f2 = lambda x, y1, y2, y3, y4: 2 * B * x * np.exp(B * (y3 - A) / C) * y4
 f3 = lambda x, y1, y2, y3, y4: 2 * C * x * y4
 f4 = lambda x, y1, y2, y3, y4: -2 * x * np.log(y1)
 
-for k in range(7, 13):
+for k in range(9, 13):
 
     x0 = 0
     y10 = y1(0)
@@ -129,7 +129,7 @@ c2 = 0.5
 b2 = 1 / (2 * c2)
 b1 = 1 - b2
 
-for k in range(7, 13):
+for k in range(9,13):
 
     x0 = 0
     y10 = y1(0)
